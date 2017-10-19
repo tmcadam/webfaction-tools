@@ -2,7 +2,7 @@
 
 DEPLOY_PATH=${1}
 DEPLOY_REPO=https://github.com/${2}.git
-DEPLOY_BRANCH=${3}
+DEPLOY_COMMIT=${3}
 
 # Check if deploy folder exists and create if necessary
 if [ ! -d "${DEPLOY_PATH}" ]; then
@@ -18,4 +18,4 @@ else
 fi;
 
 # Checkout the branch
-git checkout --force "${DEPLOY_BRANCH}";
+git checkout --force "${DEPLOY_COMMIT}";

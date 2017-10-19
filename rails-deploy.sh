@@ -8,8 +8,8 @@ export GEM_HOME=$WEBAPP_DIR/gems
 export RUBYLIB=$WEBAPP_DIR/lib
 
 cd $APP_DIR
-bundle install
-rake db:migrate
+env RAILS_ENV=$1 bundle install
+env RAILS_ENV=$1 rake db:migrate
 
 cd $WEBAPP_DIR
 # Checks if this is the first run
