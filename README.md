@@ -2,6 +2,24 @@
 
 A few tools for working with the Webfaction API and automatic deploys from Travis and Github
 
+## Github keys
+
+  - `ssh-keygen -t rsa -b 4096 -C "my-email@gmail.com"`
+    - save as `~/.ssh/github`
+    - leave passphrase blank
+  - `eval "$(ssh-agent -s)"`
+  - `ssh-add ~/.ssh/github`
+  - add entry to `~/.ssh/config`
+    ```
+        Host github.com
+            IdentityFile ~/.ssh/github
+    ```
+  - `cat ~/.ssh/github.pub`
+  - copy and paste the key from terminal to Github using their web UI
+  - if there is an issue with permissions
+    - `chmod 600 ~/.ssh/*`
+    - `chmod 700 ~/.ssh`  
+
 ## Sending emails
 
   - Setup an email mailbox using the Web UI
@@ -11,10 +29,9 @@ A few tools for working with the Webfaction API and automatic deploys from Travi
   - Set environment variables for `SMTP_USER` and `SMTP_PASSWORD`
     - These can be added to `~/.bashrc` e.g.
 
-       `export SMTP_USER="username"`
-
+       `export SMTP_USER="username"`<br>
        `export SMTP_PASSWORD="password"`
-       
+
   - Call the `sendmail.py` script with the full path to the config file as the 1st parameter and files to attach as subsequent parameters
     - `python3 sendmail.py ~/email/config.json file1.txt file2.txt`
 
