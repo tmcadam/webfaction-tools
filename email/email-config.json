@@ -1,0 +1,12 @@
+{
+    "to_addrs": [
+        "joe-blogs@gmail.com",
+        "joanne-blogs@gmail.org"
+    ],
+    "from_addr": "DFB Backup <webmaster@webfaction.org>",
+    "subject": "Backup report",
+    "body": "Backup completed",
+    "smtp_server": {"name":"smtp.webfaction.com", "port": 587},
+    "smtp_user_var": "SMTP_USER",
+    "smtp_pass_var": "SMTP_PASSWORD"
+}
