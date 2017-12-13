@@ -1,5 +1,4 @@
-# Created by .ignore support plugin (hsz.mobi)
-credentials.py
-.idea/
+
 *.pyc
-test_git_deploy.sh
+webfaction_instance_credentials.py
+test_env_vars.sh

@@ -3,7 +3,7 @@
 import xmlrpclib
 import sys
 
-from credentials import CREDENTIALS
+from webfaction_instance_credentials import CREDENTIALS
 
 command = sys.argv[1]
 server = xmlrpclib.ServerProxy('https://api.webfaction.com/')

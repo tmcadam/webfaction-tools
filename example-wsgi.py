@@ -1,6 +1,5 @@
 # A simple helloworld wsgi.py, useful for testing Apache config
 
-
 def application(environ, start_response):
     status = '200 OK'
     output = b'Hello World!'
