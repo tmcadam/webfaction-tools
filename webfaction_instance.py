@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import xmlrpclib
-import sys
+import sys, os
 
 from webfaction_instance_credentials import CREDENTIALS
 
@@ -37,3 +37,20 @@ elif command == "status":
     print 'DB Users:'
     for user in db_users_list:
         print '\t{}'.format(user['username'])
+
+elif command == "get_certs":
+    certs = server.list_certificates(session_id)
+    for cert in certs:
+        print cert["name"]
+
+elif command == "get_certs_files":
+    certs = server.list_certificates(session_id)
+    cert_name = sys.argv[2]
+    cert_path = sys.argv[3]
+    cert = [cert for cert in certs if cert['name'] == cert_name][0]
+    with open(os.path.join( cert_path, cert_name + ".cert"), 'w') as f:
+        f.write(cert['certificate'])
+    with open(os.path.join( cert_path, cert_name + ".key"), 'w') as f:
+        f.write(cert['private_key'])
+    with open(os.path.join( cert_path, "ca.cert"), 'w') as f:
+        f.write(cert['intermediates'])
