@@ -3,11 +3,9 @@
 import xmlrpclib
 import sys, os
 
-from webfaction_instance_credentials import CREDENTIALS
-
 command = sys.argv[1]
 server = xmlrpclib.ServerProxy('https://api.webfaction.com/')
-session_id, account = server.login(CREDENTIALS["user"], CREDENTIALS["password"])
+session_id, account = server.login(os.environ['WEBFACTION_USER'], os.environ['WEBFACTION_PASS'])
 
 # https://docs.webfaction.com/xmlrpc-api/apps.html
 if command == "create":
