@@ -44,11 +44,25 @@ elif command == "get_certs":
 elif command == "get_certs_files":
     certs = server.list_certificates(session_id)
     cert_name = sys.argv[2]
-    cert_path = sys.argv[3]
+    cert_path = sys.argv[3] # path to cert folder
+    if not os.path.exists(cert_path):
+        os.makedirs(cert_path)
     cert = [cert for cert in certs if cert['name'] == cert_name][0]
     with open(os.path.join( cert_path, cert_name + ".cert"), 'w') as f:
         f.write(cert['certificate'])
     with open(os.path.join( cert_path, cert_name + ".key"), 'w') as f:
         f.write(cert['private_key'])
-    with open(os.path.join( cert_path, "ca.cert"), 'w') as f:
+    with open(os.path.join( cert_path, cert_name + "_ca.cert"), 'w') as f:
         f.write(cert['intermediates'])
+
+elif command == "put_certs_files":
+    cert_name = sys.argv[2]
+    cert_folder = sys.argv[3]
+    cert_path = sys.argv[3] # path to cert folder
+    with open(os.path.join( cert_path, cert_name + ".cert"), 'r') as f:
+        cert = f.read()
+    with open(os.path.join( cert_path, cert_name + ".key"), 'r') as f:
+        key = f.read()
+    with open(os.path.join( cert_path, cert_name + "_ca.cert"), 'r') as f:
+        ca_cert = f.read()
+    server.update_certificate(session_id, cert_name, cert, key, ca_cert)
