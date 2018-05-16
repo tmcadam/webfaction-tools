@@ -2,7 +2,7 @@ import xmlrpclib
 import sys, os
 
 server = xmlrpclib.ServerProxy('https://api.webfaction.com/')
-session_id, account = server.login(os.environ['WEBFACTION_USER'], os.environ['WEBFACTION_PASS'], "Web585", 2)
+session_id, account = server.login(os.environ['WEBFACTION_USER'], os.environ['WEBFACTION_PASS'], os.environ['WEBFACTION_MACHINE'], 2)
 
 cert_name = sys.argv[1]     # name of cert in webfaction
 cert_folder = sys.argv[2]   # path to cert folder
